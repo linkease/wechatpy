@@ -137,6 +137,9 @@ class WeChatOAuth:
         self.open_id = res["openid"]
         self.refresh_token = res["refresh_token"]
         self.expires_in = res["expires_in"]
+        # new param
+        self.is_snapshotuser = res['is_snapshotuser']
+        self.unionid = res['unionid']
         return res
 
     def refresh_access_token(self, refresh_token):
