@@ -41,6 +41,8 @@ class WeChatOAuth(object):
         self.redirect_uri = redirect_uri
         self.scope = scope
         self.state = state
+        self.is_snapshotuser = 0
+        self.unionid = None
         self._http = requests.Session()
 
     def _request(self, method, url_or_endpoint, **kwargs):
@@ -155,6 +157,8 @@ class WeChatOAuth(object):
         self.open_id = res['openid']
         self.refresh_token = res['refresh_token']
         self.expires_in = res['expires_in']
+        self.is_snapshotuser = res.get('is_snapshotuser', 0)
+        self.unionid = res.get('unionid')
         return res
 
     def refresh_access_token(self, refresh_token):
